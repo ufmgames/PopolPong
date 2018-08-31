@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: be4fa71517307774fac763f5f24adb8e
+  productGUID: 0cdded78e03d19e4d915fa21e8a6e0d0
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -648,8 +648,8 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 916b8119-752e-4480-ba42-6f7e280c4f4b
-  projectName: PopolPong
+  cloudProjectId: 0d10d35d-3c77-4c97-ad39-af108debc1ac
+  projectName: PopolPong (1)
   organizationId: yakaffaty
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
