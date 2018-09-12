@@ -768,7 +768,7 @@ MonoBehaviour:
   livesText: {fileID: 209614358}
   gameOver: {fileID: 103873629}
   youWon: {fileID: 1368741274}
-  bricksPrefab: {fileID: 1692948984299958, guid: 155afc6930a653d49b22b8b16f643fd9,
+  bricksPrefab: {fileID: 1366195886053126, guid: 155afc6930a653d49b22b8b16f643fd9,
     type: 2}
   paddle: {fileID: 1053789970896128, guid: 41a2f355a7244804a91cb3e1bf473ba9, type: 2}
   deathParticles: {fileID: 1195697645932494, guid: 5b8a8ac5b0d98e34c973367b345c2d5c,
