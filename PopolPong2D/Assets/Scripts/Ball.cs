@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
 
-public class Ball : MonoBehaviour {
+public class Ball : MonoBehaviour
+{
 
     private bool isGoal = false;
+    private PlayerID playerId;
+    private float speed = 1;
+
+    void Start()
+    {
+        Debug.Log("playerId on ball: " + playerId);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ring")
+        if (collision.tag == "Jugador1")
         {
-            Debug.Log("Enter");
+            playerId = PlayerID.Player1;
+        }
+        else if (collision.tag == "Jugador2")
+        {
+            playerId = PlayerID.Player2;
         }
     }
 
@@ -20,7 +32,7 @@ public class Ball : MonoBehaviour {
             if (!isGoal)
             {
                 Ring goalRing = collision.gameObject.GetComponent<Ring>();
-                if(goalRing.CheckGoal(this.gameObject))
+                if (goalRing.CheckGoal(this.gameObject))
                 {
                     Debug.Log("Goalllllllllllllllll");
                     isGoal = true;

@@ -8,6 +8,8 @@ TagManager:
   - Ball
   - Bolita
   - Ring
+  - Jugador1
+  - Jugador2
   layers:
   - Default
   - TransparentFX
