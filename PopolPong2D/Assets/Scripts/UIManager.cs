@@ -8,6 +8,36 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshPro scoreJugador1;
     [SerializeField] private TextMeshPro scoreJugador2;
+    [SerializeField] private int activeLevel;
+    [SerializeField] private GameObject[] levels;
+
+    private void Start()
+    {
+        levels[activeLevel].SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            changeLevel(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            changeLevel(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            changeLevel(2);
+        }
+    }
+
+    public void changeLevel(int newActiveLevel)
+    {
+        levels[activeLevel].SetActive(false);
+        activeLevel = newActiveLevel;
+        levels[newActiveLevel].SetActive(true);
+    }
 
     public void updatePlayerScore(PlayerID playerId, int score)
     {
@@ -20,4 +50,5 @@ public class UIManager : MonoBehaviour
             scoreJugador2.SetText(score.ToString());
         }
     }
+
 }
