@@ -16,7 +16,7 @@ public class Bolita : MonoBehaviour {
 	// Update is called once per frame
 	void Iniciar ()
     {
-        transform.position = Vector3.zero;
+        //transform.position = Vector3.zero;
         rb.velocity = new Vector3(Random.Range(-1, 2) * VelocidadInicial, -VelocidadInicial);
 	}
 }
