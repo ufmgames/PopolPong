@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
-    private TextMeshPro textmeshPro;
+    [SerializeField] private TextMeshPro scoreJugador1;
+    [SerializeField] private TextMeshPro scoreJugador2;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
+    public void updatePlayerScore(PlayerID playerId, int score)
+    {
+        if (playerId == PlayerID.Player1)
+        {
+            scoreJugador1.SetText(score.ToString());
+        }
+        else if (playerId == PlayerID.Player2)
+        {
+            scoreJugador2.SetText(score.ToString());
+        }
+    }
 }

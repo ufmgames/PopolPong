@@ -2,14 +2,23 @@
 
 public class Ball : MonoBehaviour
 {
-
+    [SerializeField] private GameManager gameManager;
+    public float VelocidadInicial = 5;
     private bool isGoal = false;
     private PlayerID playerId;
     private float speed = 1;
+    private Rigidbody2D Rigidbody;
 
     void Start()
     {
-        Debug.Log("playerId on ball: " + playerId);
+        Rigidbody = GetComponent<Rigidbody2D>();
+        Iniciar();
+    }
+
+    void Iniciar()
+    {
+        //transform.position = Vector3.zero;
+        Rigidbody.velocity = new Vector3(0, -VelocidadInicial);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +45,7 @@ public class Ball : MonoBehaviour
                 {
                     Debug.Log("Goalllllllllllllllll");
                     isGoal = true;
+                    gameManager.GoalScore(playerId, 1);
                 }
             }
         }

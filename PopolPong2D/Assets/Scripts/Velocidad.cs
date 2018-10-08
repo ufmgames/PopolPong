@@ -8,10 +8,10 @@ public class Velocidad : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Bolita"))
+        if (col.CompareTag("Ball"))
         {
             Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
-            rb.velocity = direccion.normalized * velocidad;
+            rb.velocity = direccion.normalized * velocidad;            
         }
     }
 }
