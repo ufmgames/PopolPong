@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private UIManager UIManager;
+    [SerializeField] private GameObject ballPrefab;
     private Dictionary<PlayerID, int> scores = new Dictionary<PlayerID, int>();
 
     // Use this for initialization
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
     {
         // reference UI
         //GameObject uiManagerObject = GameObject.Find("UIManager");
-       // UIManager = uiManagerObject.GetComponent<UIManager>();
+        // UIManager = uiManagerObject.GetComponent<UIManager>();
 
         // initialize scores
         scores.Add(PlayerID.Player1, 0);

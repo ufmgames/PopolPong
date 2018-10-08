@@ -9,16 +9,27 @@ public class Ball : MonoBehaviour
     private float speed = 1;
     private Rigidbody2D Rigidbody;
 
+    private bool hasVelocity = false;
+
     void Start()
     {
-        Rigidbody = GetComponent<Rigidbody2D>();
-        Iniciar();
+        if (!hasVelocity)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector3(0, -VelocidadInicial);
+        }
     }
 
-    void Iniciar()
+    public void Iniciar()
     {
         //transform.position = Vector3.zero;
         Rigidbody.velocity = new Vector3(0, -VelocidadInicial);
+        
+    }
+
+    public void UpdateVelocity(Vector3 velocityVector)
+    {
+        GetComponent<Rigidbody2D>().velocity = velocityVector;
+        hasVelocity = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

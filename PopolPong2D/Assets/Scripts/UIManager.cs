@@ -5,7 +5,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-
     [SerializeField] private TextMeshPro scoreJugador1;
     [SerializeField] private TextMeshPro scoreJugador2;
     [SerializeField] private int activeLevel;
@@ -22,14 +21,15 @@ public class UIManager : MonoBehaviour
         {
             changeLevel(0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             changeLevel(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             changeLevel(2);
         }
+
     }
 
     public void changeLevel(int newActiveLevel)
@@ -50,5 +50,12 @@ public class UIManager : MonoBehaviour
             scoreJugador2.SetText(score.ToString());
         }
     }
+
+    private void GenerateBalls()
+    {
+
+    }
+
+
 
 }
