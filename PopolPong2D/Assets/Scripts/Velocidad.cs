@@ -10,8 +10,10 @@ public class Velocidad : MonoBehaviour {
     {
         if (col.CompareTag("Ball"))
         {
-            Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
-            rb.velocity = direccion.normalized * velocidad;            
+            //Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+            //rb.velocity = direccion.normalized * velocidad;
+            Ball ball = col.gameObject.GetComponent<Ball>();
+            ball.updateMovement(direccion);
         }
     }
 }

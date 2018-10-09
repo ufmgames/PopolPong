@@ -18,6 +18,6 @@ public class Jugadores : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(Input.GetAxis("Horizontal") * Velocidad, 0);
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Velocidad * Time.deltaTime);
     }
 }

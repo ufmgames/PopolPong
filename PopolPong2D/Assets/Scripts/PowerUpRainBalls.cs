@@ -1,33 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerUpRainBalls : MonoBehaviour
 {
-
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float ballSpeed;
     private bool activePowerUp = true;
+    private Vector2[] points;
+
+    private void Start()
+    {
+        points = new Vector2[] { new Vector2(1, 1), new Vector2(1, -1), new Vector2(-1, -1), new Vector2(-1, 1) };
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Ball") && activePowerUp)
         {
             activePowerUp = false;
-            GameObject ball1 = Instantiate(ballPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-            ball1.GetComponent<Ball>().UpdateVelocity(new Vector3(1, 1, 0) * ballSpeed);
-
-            GameObject ball2 = Instantiate(ballPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-            ball2.GetComponent<Ball>().UpdateVelocity(new Vector3(1, -1, 0) * ballSpeed);
-
-            GameObject ball3 = Instantiate(ballPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-            ball3.GetComponent<Ball>().UpdateVelocity(new Vector3(-1, -1, 0) * ballSpeed);
-
-            GameObject ball4 = Instantiate(ballPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-            ball4.GetComponent<Ball>().UpdateVelocity(new Vector3(-1, 1, 0)* ballSpeed);
-
+            Vector2 powerUpPosition = new Vector2(transform.position.x, transform.position.y);
+            for (int i = 0; i < points.Length; i++)
+            {
+                GameObject ballObject = Instantiate(ballPrefab, powerUpPosition, Quaternion.identity);
+                Ball ball = ballObject.GetComponent<Ball>();
+                ball.updateMovement(points[i]);
+                ball.updateSpeed(5);
+            }
             Destroy(this.gameObject);
-            Debug.Log("generateball");
         }
     }
 }

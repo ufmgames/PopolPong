@@ -17,17 +17,21 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             changeLevel(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             changeLevel(1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             changeLevel(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            changeLevel(3);
         }
 
     }
@@ -50,12 +54,4 @@ public class UIManager : MonoBehaviour
             scoreJugador2.SetText(score.ToString());
         }
     }
-
-    private void GenerateBalls()
-    {
-
-    }
-
-
-
 }

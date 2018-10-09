@@ -2,34 +2,13 @@
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-    public float VelocidadInicial = 5;
-    private bool isGoal = false;
+    [SerializeField] private Vector2 ballMovement = Vector2.zero;
+    [SerializeField] private float speed = 3;
     private PlayerID playerId;
-    private float speed = 1;
-    private Rigidbody2D Rigidbody;
 
-    private bool hasVelocity = false;
-
-    void Start()
+    private void Update()
     {
-        if (!hasVelocity)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(0, -VelocidadInicial);
-        }
-    }
-
-    public void Iniciar()
-    {
-        //transform.position = Vector3.zero;
-        Rigidbody.velocity = new Vector3(0, -VelocidadInicial);
-        
-    }
-
-    public void UpdateVelocity(Vector3 velocityVector)
-    {
-        GetComponent<Rigidbody2D>().velocity = velocityVector;
-        hasVelocity = true;
+        transform.Translate(ballMovement * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,30 +23,24 @@ public class Ball : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public PlayerID getPlayerId()
     {
-        if (collision.tag == "Ring")
-        {
-            Debug.Log("Stay");
-            if (!isGoal)
-            {
-                Ring goalRing = collision.gameObject.GetComponent<Ring>();
-                if (goalRing.CheckGoal(this.gameObject))
-                {
-                    Debug.Log("Goalllllllllllllllll");
-                    isGoal = true;
-                    gameManager.GoalScore(playerId, 1);
-                }
-            }
-        }
+        return playerId;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void updateMovement(Vector2 newVector)
     {
-        if (collision.tag == "Ring")
-        {
-            Debug.Log("Exit");
-            isGoal = false;
-        }
+        ballMovement = newVector;
     }
+
+    public void updateSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public Vector2 getBallMovement()
+    {
+        return ballMovement;
+    }
+
 }
