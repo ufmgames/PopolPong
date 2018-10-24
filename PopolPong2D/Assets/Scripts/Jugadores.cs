@@ -18,6 +18,20 @@ public class Jugadores : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Velocidad * Time.deltaTime);
+        if(gameObject.tag == ("Jugador1"))
+        {
+            transform.Translate(new Vector3(Input.GetAxis("Horizontal1"), 0, 0) * Velocidad * Time.deltaTime);
+
+        } else if(gameObject.tag == ("Jugador2"))
+        {
+            transform.Translate(new Vector3(Input.GetAxis("Horizontal2"), 0, 0) * Velocidad * Time.deltaTime);
+
+        }
+    }
+
+    public void BPPlayer()
+    {
+        transform.localScale += new Vector3(2, 1.5f, 1);
+
     }
 }

@@ -1,4 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Ring : MonoBehaviour
 {
@@ -9,11 +15,18 @@ public class Ring : MonoBehaviour
     [SerializeField] private GameObject _rightLimit;
     private GameManager gameManager;
     private bool isGoal = false;
+    public Transform sparkle;
+
 
     private void Start()
     {
         GameObject gameManagerObject = GameObject.Find("GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+        ps.Stop();
+
+
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -24,10 +37,14 @@ public class Ring : MonoBehaviour
             {
                 if (CheckGoal(collision.gameObject))
                 {
+                    ParticleSystem ps = GetComponent<ParticleSystem>();
+                    ps.Play();
+                    StartCoroutine(stopSparkles());
                     Debug.Log("Goalllllllllllllllll");
                     isGoal = true;
+                    stopSparkles();
                     PlayerID playerId = collision.gameObject.GetComponent<Ball>().getPlayerId();
-                    gameManager.GoalScore(playerId, 1);
+                    gameManager.GoalScore(playerId, 1); 
                 }
             }
         }
@@ -39,6 +56,14 @@ public class Ring : MonoBehaviour
         {
             isGoal = false;
         }
+    }
+
+     IEnumerator stopSparkles()
+    {
+        Debug.Log("Enter");
+        yield return new WaitForSeconds(.5f);
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+        ps.Stop();
     }
 
     public bool CheckGoal(GameObject ball)

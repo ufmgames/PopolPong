@@ -4,7 +4,7 @@ public class PowerUpRainBalls : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float ballSpeed;
-    private bool activePowerUp = true;
+    bool activePowerUp = true;
     private Vector2[] points;
 
     private void Start()

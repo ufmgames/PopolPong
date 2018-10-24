@@ -10,6 +10,10 @@ TagManager:
   - Ring
   - Jugador1
   - Jugador2
+  - PowerUpSlow
+  - PowerUpFast
+  - PowerUpBPallete
+  - PowerUpSPallete
   layers:
   - Default
   - TransparentFX
