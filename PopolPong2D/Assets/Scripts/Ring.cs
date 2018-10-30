@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Ring : MonoBehaviour
 {
-
     [SerializeField] private GameObject _upLimit;
     [SerializeField] private GameObject _downLimit;
     [SerializeField] private GameObject _leftLimit;
     [SerializeField] private GameObject _rightLimit;
     private GameManager gameManager;
     private bool isGoal = false;
+    public Animator _animator;
 
     private void Start()
     {
@@ -18,22 +19,44 @@ public class Ring : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Ball")
+        /* check if collision with ball
+         * only one goal at a time
+         * check if the game object is exactly on the goal area */
+        if ((collision.tag == "Ball") && (!isGoal) && CheckGoal(collision.gameObject))
         {
-            if (!isGoal)
+            Ball ball = collision.gameObject.GetComponent<Ball>();
+            PlayerID playerId = ball.getPlayerId();
+            if (playerId != 0)
             {
-                if (CheckGoal(collision.gameObject))
-                {
-                    Debug.Log("Goalllllllllllllllll");
-                    isGoal = true;
-                    PlayerID playerId = collision.gameObject.GetComponent<Ball>().getPlayerId();
-                    gameManager.GoalScore(playerId, 1);
-                }
+                isGoal = true;
+                Debug.Log("Goalllllllllllllllll " + playerId);
+                gameManager.GoalScore(playerId, 1);
+                ball.updateSpeed(0);
+                _animator.SetBool("RingGoal", true);
+                StartCoroutine(ScoredGoal(ball));
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    // Coroutine
+    IEnumerator ScoredGoal(Ball ball)
+    {
+        yield return new WaitForSeconds(1);
+        _animator.SetBool("RingGoal", false);
+        _animator.SetBool("GenerateBall", true);
+        StartCoroutine(GenerateBall(ball));
+    }
+
+    IEnumerator GenerateBall(Ball ball)
+    {
+        yield return new WaitForSeconds(1);
+        _animator.SetBool("GenerateBall", false);
+        ball.updateSpeed(5);
+    }
+
+
+
+        private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Ball")
         {

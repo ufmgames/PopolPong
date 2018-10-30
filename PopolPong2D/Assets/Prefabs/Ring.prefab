@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4798478525136764}
   - component: {fileID: 212216880793368646}
+  - component: {fileID: 95659424054100964}
   m_Layer: 0
   m_Name: RingSprite
   m_TagString: Untagged
@@ -182,7 +183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1412426853969766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.53000003, z: 0}
+  m_LocalPosition: {x: -0.03, y: -0.53000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4702619294375054}
@@ -231,6 +232,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+--- !u!95 &95659424054100964
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123006477275688}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e53467d47d3648741b1bef3839f0b5ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114504027227788970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +265,7 @@ MonoBehaviour:
   _downLimit: {fileID: 1130715545848310}
   _leftLimit: {fileID: 1745969552642138}
   _rightLimit: {fileID: 1971042219077094}
+  _animator: {fileID: 95659424054100964}
 --- !u!212 &212216880793368646
 SpriteRenderer:
   m_ObjectHideFlags: 1
