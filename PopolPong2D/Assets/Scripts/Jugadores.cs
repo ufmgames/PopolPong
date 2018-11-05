@@ -6,6 +6,7 @@ public enum PlayerID { Player1 = 1, Player2 = 2 };
 
 public class Jugadores : MonoBehaviour
 {
+    GameObject PU;
     Rigidbody2D rb;
     public float Velocidad;
     public PlayerID playerId;
@@ -32,6 +33,24 @@ public class Jugadores : MonoBehaviour
     public void BPPlayer()
     {
         transform.localScale += new Vector3(2, 1.5f, 1);
+
+    }
+
+    
+
+    public IEnumerator BackToNormBig()
+    {
+
+        yield return new WaitForSeconds(2.5f);
+        this.gameObject.transform.localScale -= new Vector3(2, 0, 0);
+
+    }
+
+    public IEnumerator BackToNormSmall()
+    {
+
+        yield return new WaitForSeconds(2.5f);
+        this.gameObject.transform.localScale += new Vector3(0.5f, 0, 0);
 
     }
 }

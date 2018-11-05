@@ -5,7 +5,6 @@ using UnityEngine;
 public class PowerUSlowSpeed : MonoBehaviour {
 
     bool activePowerUp = true;
-
     // Use this for initialization
     void Start () {
 		
@@ -16,10 +15,12 @@ public class PowerUSlowSpeed : MonoBehaviour {
         if (col.CompareTag("Ball") && activePowerUp)
         {
             activePowerUp = false;
-
+            
             Destroy(this.gameObject);
         }
     }
+
+    
 
     private void OnTriggerExit2D(Collider2D collision)
     {

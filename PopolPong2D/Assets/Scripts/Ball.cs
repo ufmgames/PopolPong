@@ -8,6 +8,9 @@ public class Ball : MonoBehaviour
     public float speed = 5;
     public PlayerID playerId;
     Material material;
+    GameObject pallete;
+    AudioSource audio;
+    Jugadores jugadoresScript;
     bool action = true;
 
     private void Update()
@@ -20,32 +23,73 @@ public class Ball : MonoBehaviour
     {
         if (collision.tag == "Jugador1")
         {
+            audio = GetComponent<AudioSource>();
+            audio.Play();
             material.color = Color.green;
-
             playerId = PlayerID.Player1;
             OnTriggerExit2D(collision);
-
-
         }
         else if (collision.tag == "Jugador2")
         {
+            audio = GetComponent<AudioSource>();
+            audio.Play();
             material.color = Color.red;
             playerId = PlayerID.Player2;
         }
-        //On Collion with PU change speeds 
+        //////////////////////////////////////// SLOW FAST Power Up ////////////////////////////////
         if (collision.tag == "PowerUpSlow")
         {
             Debug.Log(speed);
             speed = speed - 3;
             StartCoroutine(YieldStopTime(1.5f));
-
-
         }
         else if (collision.tag == "PowerUpFast")
         {
             speed = speed * 2;
             StartCoroutine(YieldFastTime(.5f));
         }
+        //////////////////////////////////// Big Pallete ///////////////////////////////////////////////////////
+        if(collision.tag == "PowerUpBPallete")
+        {
+            if (getPlayerId() == PlayerID.Player1)
+            {
+                pallete = GameObject.FindGameObjectWithTag("Jugador1");
+                jugadoresScript = pallete.GetComponent<Jugadores>();
+                pallete.transform.localScale += new Vector3(2, 0, 0);
+                StartCoroutine(jugadoresScript.BackToNormBig());
+            }
+            else if (getPlayerId() == PlayerID.Player2)
+            {
+                pallete = GameObject.FindGameObjectWithTag("Jugador2");
+                jugadoresScript = pallete.GetComponent<Jugadores>();
+                pallete.transform.localScale += new Vector3(2, 0, 0);
+                StartCoroutine(jugadoresScript.BackToNormBig());
+            }
+        }
+        //////////////////////////////////// Small Pallete ///////////////////////////////////////////////////////
+        if (collision.tag == "PowerUpSPallete")
+        {
+            if (getPlayerId() == PlayerID.Player1)
+            {
+                pallete = GameObject.FindGameObjectWithTag("Jugador1");
+                jugadoresScript = pallete.GetComponent<Jugadores>();
+                pallete.transform.localScale -= new Vector3(0.5f, 0, 0);
+                StartCoroutine(jugadoresScript.BackToNormSmall());
+            }
+            else if (getPlayerId() == PlayerID.Player2)
+            {
+                pallete = GameObject.FindGameObjectWithTag("Jugador2");
+                jugadoresScript = pallete.GetComponent<Jugadores>();
+                pallete.transform.localScale -= new Vector3(0.5f, 0, 0);
+                StartCoroutine(jugadoresScript.BackToNormSmall());
+            }
+        }
+
+
+        
+        OnTriggerExit2D(collision);
+        
+
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -58,6 +102,7 @@ public class Ball : MonoBehaviour
         Debug.Log(n);
         yield return new WaitForSeconds(n);
         speed = speed /2;
+        StopAllCoroutines();
 
     }
 
@@ -66,10 +111,10 @@ public class Ball : MonoBehaviour
         Debug.Log(n);
         yield return new WaitForSeconds(n);
         speed = speed + 3;
+        StopAllCoroutines();
+
     
     }
-
-
 
     public PlayerID getPlayerId()
     {
