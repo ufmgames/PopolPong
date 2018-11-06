@@ -41,12 +41,12 @@ public class Ball : MonoBehaviour
         {
             Debug.Log(speed);
             speed = speed - 3;
-            StartCoroutine(YieldStopTime(1.5f));
+            StartCoroutine(YieldStopTime(5f));
         }
         else if (collision.tag == "PowerUpFast")
         {
             speed = speed * 2;
-            StartCoroutine(YieldFastTime(.5f));
+            StartCoroutine(YieldFastTime(5f));
         }
         //////////////////////////////////// Big Pallete ///////////////////////////////////////////////////////
         if(collision.tag == "PowerUpBPallete")

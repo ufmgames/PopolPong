@@ -41,7 +41,7 @@ public class Jugadores : MonoBehaviour
     public IEnumerator BackToNormBig()
     {
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(10f);
         this.gameObject.transform.localScale -= new Vector3(2, 0, 0);
 
     }
@@ -49,7 +49,7 @@ public class Jugadores : MonoBehaviour
     public IEnumerator BackToNormSmall()
     {
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(10f);
         this.gameObject.transform.localScale += new Vector3(0.5f, 0, 0);
 
     }
